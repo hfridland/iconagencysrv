@@ -53,7 +53,7 @@ public class JWTTokenProvider {
                 .setSigningKey(SecurityConstants.SECRET)
                 .parseClaimsJws(token)
                 .getBody();
-        String id = (String) claims.get("Id");
+        String id = (String) claims.get("id");
         return Long.parseLong(id);
     }
 }
