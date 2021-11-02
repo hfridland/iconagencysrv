@@ -14,10 +14,10 @@ public class BOM {
     private String sku;
     private String description;
     private String category;
-    @Column(name = "`non-calculated-price`")
+    @Column(name = "non_calculated_price")
     private Double nonCalculatedPrice;
-    @Column(name = "`list-price`")
+    @Column(name = "list_price")
     private Double listPrice;
-    @Column(name = "`discount-percentage`")
+    @Column(name = "discount_percentage")
     private Double discountPercentage;
 }
