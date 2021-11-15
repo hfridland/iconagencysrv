@@ -4,12 +4,17 @@ import com.iconagency.quotes.dto.ProductDTO;
 import com.iconagency.quotes.dto.ProductHdrDTO;
 import com.iconagency.quotes.entity.Product;
 import com.iconagency.quotes.facade.ProductFacade;
+import com.iconagency.quotes.dto.ProductForSaveDTO;
 import com.iconagency.quotes.service.ProductService;
+import com.iconagency.quotes.validations.ResponseErrorValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +26,9 @@ public class ProductController {
     private ProductFacade productFacade;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ResponseErrorValidation responseErrorValidation;
+
 
     @GetMapping("/categories")
     public ResponseEntity<List<String>> getAllCategories() {
@@ -30,9 +38,9 @@ public class ProductController {
 
     @GetMapping("/category/{category}")
     public ResponseEntity<List<ProductHdrDTO>> getProductsByCategory(@PathVariable("category") String category) {
-         List<ProductHdrDTO> products = productService.getProductsByCategory(category)
+        List<ProductHdrDTO> products = productService.getProductsByCategory(category)
                 .stream()
-                 .map(productFacade::productToProductHdrDTO)
+                .map(productFacade::productToProductHdrDTO)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
@@ -42,6 +50,22 @@ public class ProductController {
         Product product = productService.getProductByProductId(productId);
         ProductDTO productDTO = productFacade.productToProductDTO(product);
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/{productId}/inUse")
+    public ResponseEntity<Boolean> isProductNoInUse(@PathVariable("productId") String productId) {
+        Boolean res = productService.isProductNoInUse(productId);
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<Object> updateProduct(@Valid @RequestBody ProductForSaveDTO productForSave, BindingResult bindingResult) {
+        ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
+        if (!ObjectUtils.isEmpty(errors)) return  errors;
+
+        Product product = productService.updateProduct(productForSave);
+        ProductForSaveDTO productUpdated = productFacade.productToProductForSaveDTO(product);
+        return new ResponseEntity<>(productUpdated, HttpStatus.OK);
     }
 
 }

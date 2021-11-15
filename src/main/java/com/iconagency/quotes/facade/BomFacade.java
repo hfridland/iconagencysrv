@@ -10,6 +10,7 @@ public class BomFacade {
     public BomHdrDTO bomToBomHdrDTO(BOM bom) {
         BomHdrDTO bomHdrDTO = new BomHdrDTO();
         bomHdrDTO.setPart(bom.getPart());
+        bomHdrDTO.setSku(bomHdrDTO.getSku());
         bomHdrDTO.setDescription(bom.getDescription());
         return bomHdrDTO;
     }

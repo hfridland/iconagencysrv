@@ -1,13 +1,13 @@
 package com.iconagency.quotes.facade;
 
-import com.iconagency.quotes.dto.BomDTO;
-import com.iconagency.quotes.dto.BomHdrDTO;
-import com.iconagency.quotes.dto.ProductDTO;
-import com.iconagency.quotes.dto.ProductHdrDTO;
+import com.iconagency.quotes.dto.*;
 import com.iconagency.quotes.entity.BOM;
 import com.iconagency.quotes.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ProductFacade {
@@ -38,9 +38,24 @@ public class ProductFacade {
                     BOM bom = bomProducts.getPart();
                     BomDTO bomDTO = bomFacade.bomToBomDTO(bom);
                     productDTO.getParts().add(bomDTO);
-                    /*BomDTO bomDTO = bomFacade.bomToBomDTO(bomProducts.getPart());
-                    productDTO.getParts().add(bomDTO);*/
                 });
         return productDTO;
+    }
+
+    public ProductForSaveDTO productToProductForSaveDTO(Product product) {
+        ProductForSaveDTO productForSaveDTO = new ProductForSaveDTO();
+        productForSaveDTO.setProduct(product.getProduct());
+        productForSaveDTO.setDescription(product.getProductDescription());
+        productForSaveDTO.setHtmlLink(product.getHtmlLink());
+        productForSaveDTO.setCategory(product.getCategory());
+        productForSaveDTO.setSubtotal(product.getSubtotal());
+        productForSaveDTO.setNotes(product.getNotes());
+        productForSaveDTO.setProductListPrice(product.getProductListPrice());
+
+        product.getBomProducts().stream()
+                .forEach(bomProducts -> {
+                    productForSaveDTO.getParts().add(bomProducts.getPart().getPart());
+                });
+        return  productForSaveDTO;
     }
 }
