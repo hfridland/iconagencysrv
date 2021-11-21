@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuoteWithoutSDPrice" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2f59cc7-abce-4d1d-b65e-cb460d5686f2">
+	<parameter name="FileNo" class="java.lang.String"/>
+	<parameter name="QuoteNo" class="java.lang.String"/>
+	<parameter name="JobName" class="java.lang.String"/>
+	<parameter name="Engineer" class="java.lang.String"/>
+	<parameter name="Date" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="tag" class="java.lang.String"/>
+	<field name="product" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="price" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="232" y="10" width="90" height="18" uuid="3c12a4b4-5dcc-457c-89bd-3b404ef7c50c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUOTATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="10" width="86" height="16" uuid="26c2b46b-3111-4cf4-a52e-f863dbae5e7d"/>
+				<text><![CDATA[PH: 778-285-4288]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="30" width="95" height="20" uuid="2ed1abc3-2a10-494a-adfe-d3ae90e06ee5"/>
+				<text><![CDATA[FAX: 778-285-2776]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="11" width="138" height="19" uuid="bb410d95-b3cf-491f-a73d-245dcda22505"/>
+				<text><![CDATA[Unit 114 - 1525 Broadway st.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="41" width="159" height="30" uuid="65bdabfb-eccc-4c26-99dd-f05d8d3f2465"/>
+				<text><![CDATA[Port Coquitlam, British Columbia, Canada V3C 6P6 ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="11" width="39" height="18" uuid="8d9f0186-89ec-4168-9e02-e4f4412ba700"/>
+				<text><![CDATA[File #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="11" width="64" height="18" uuid="9465a910-39df-4c57-a202-503f2de78f68"/>
+				<textFieldExpression><![CDATA[$P{FileNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="13" width="47" height="15" uuid="a4c3c998-bda1-4a5b-b99e-b5e818e68790"/>
+				<text><![CDATA[Quote #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="195" y="15" width="244" height="14" uuid="13baf135-a9dd-4402-b810-57db2578a23e"/>
+				<textFieldExpression><![CDATA[$P{QuoteNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="59" width="76" height="15" uuid="32f9f5a3-83fb-4d4b-8c60-ee88758312e3"/>
+				<text><![CDATA[Engineer:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="59" width="344" height="15" uuid="72644669-5b12-4676-b6e5-788326436565"/>
+				<textFieldExpression><![CDATA[$P{Engineer}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="38" width="76" height="18" uuid="8da68ce2-1f7b-4d7d-ae2b-e77a90582503"/>
+				<text><![CDATA[Job Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="35" width="344" height="18" uuid="32ed709e-5207-437a-8c7a-b35f8ef6070a"/>
+				<textFieldExpression><![CDATA[$P{JobName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="445" y="16" width="24" height="14" uuid="5021ae53-f66b-4809-bee8-0217708bef98"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="yyyy-MM-dd">
+				<reportElement x="480" y="17" width="75" height="14" uuid="a7e4fab8-6ff5-4feb-bae5-00971eb56821"/>
+				<textFieldExpression><![CDATA[$P{Date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="9f82a53d-3c63-41b8-80dd-ce1e57b53654">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="4" width="30" height="15" uuid="f61c48e1-f1fb-4b2d-b28c-fee34b0894ba"/>
+				<text><![CDATA[Tag #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="4" width="72" height="15" uuid="3205723f-8d8a-421c-ac4e-0e87bb70a910">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[Part #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="4" width="46" height="15" uuid="90371ba9-f936-4f88-9304-2e2e2ee814a1"/>
+				<text><![CDATA[SKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="4" width="100" height="15" uuid="f0c0f3de-a98b-4e76-b6b4-b1a3185d1954"/>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="4" width="100" height="15" uuid="50075a17-860e-463f-bc54-b6642a7476c7"/>
+				<text><![CDATA[Net Price]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="8" y="10" width="100" height="15" uuid="a4f9b694-f2cf-4fb8-8b27-5890aae8357c"/>
+				<textFieldExpression><![CDATA[$F{tag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="10" width="188" height="15" uuid="93c7540a-09a2-4f27-b29d-fd2c64b23708">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="31" width="143" height="15" uuid="92c8cff6-7288-4478-b128-5f08d81ef697"/>
+				<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="29" width="260" height="15" uuid="1820af7d-b263-413a-8688-8fbdab712f0c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.##;¤-#,##0.##">
+				<reportElement x="457" y="30" width="88" height="15" uuid="0a321847-c072-475c-a2ce-fcf65eb1bee4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

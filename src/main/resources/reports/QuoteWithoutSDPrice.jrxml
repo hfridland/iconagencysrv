@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuoteWithoutSDPrice" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2f59cc7-abce-4d1d-b65e-cb460d5686f2">
+	<parameter name="FileNo" class="java.lang.String"/>
+	<parameter name="QuoteNo" class="java.lang.String"/>
+	<parameter name="JobName" class="java.lang.String"/>
+	<parameter name="Engineer" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="232" y="10" width="90" height="18" uuid="3c12a4b4-5dcc-457c-89bd-3b404ef7c50c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUOTATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="10" width="86" height="16" uuid="26c2b46b-3111-4cf4-a52e-f863dbae5e7d"/>
+				<text><![CDATA[PH: 778-285-4288]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="30" width="95" height="20" uuid="2ed1abc3-2a10-494a-adfe-d3ae90e06ee5"/>
+				<text><![CDATA[FAX: 778-285-2776]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="11" width="138" height="19" uuid="bb410d95-b3cf-491f-a73d-245dcda22505"/>
+				<text><![CDATA[Unit 114 - 1525 Broadway st.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="41" width="159" height="30" uuid="65bdabfb-eccc-4c26-99dd-f05d8d3f2465"/>
+				<text><![CDATA[Port Coquitlam, British Columbia, Canada V3C 6P6]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="11" width="39" height="18" uuid="8d9f0186-89ec-4168-9e02-e4f4412ba700"/>
+				<text><![CDATA[File #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="11" width="64" height="18" uuid="9465a910-39df-4c57-a202-503f2de78f68"/>
+				<textFieldExpression><![CDATA[$P{FileNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="13" width="47" height="15" uuid="a4c3c998-bda1-4a5b-b99e-b5e818e68790"/>
+				<text><![CDATA[Quote #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="195" y="15" width="244" height="14" uuid="13baf135-a9dd-4402-b810-57db2578a23e"/>
+				<textFieldExpression><![CDATA[$P{QuoteNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="59" width="76" height="15" uuid="32f9f5a3-83fb-4d4b-8c60-ee88758312e3"/>
+				<text><![CDATA[Engineer:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="59" width="344" height="15" uuid="72644669-5b12-4676-b6e5-788326436565"/>
+				<textFieldExpression><![CDATA[$P{Engineer}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="38" width="76" height="18" uuid="8da68ce2-1f7b-4d7d-ae2b-e77a90582503"/>
+				<text><![CDATA[Job Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="35" width="344" height="18" uuid="32ed709e-5207-437a-8c7a-b35f8ef6070a"/>
+				<textFieldExpression><![CDATA[$P{JobName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
