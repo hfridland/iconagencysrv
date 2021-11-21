@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     "/uploads/**",
                     "/favicon.ico"
                   ).permitAll()
-                  .antMatchers(SecurityConstants.SIGN_UP_URLS).permitAll()
+                  .antMatchers(SecurityConstants.SIGN_UP_URLS, SecurityConstants.REPORTS_URLS).permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

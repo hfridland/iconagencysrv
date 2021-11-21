@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +16,34 @@ import java.util.Map;
 public class JWTTokenProvider {
     public static final Logger LOG = LoggerFactory.getLogger(JWTTokenProvider.class);
 
+    public String generateToken(User user, Map<String, String> params) {
+        //User user = (User) principal;
+        Date now = new Date(System.currentTimeMillis());
+        Date expiryDate = new Date(now.getTime() + SecurityConstants.EXPIRATION_TIME);
+
+        String userId = Long.toString(user.getId());
+        Map<String, Object> claimsMap = new HashMap<>();
+        claimsMap.put("id", userId);
+        claimsMap.put("username", user.getEmail());
+        claimsMap.put("firstname", user.getName());
+        claimsMap.put("lastname", user.getLastname());
+        if (params != null) {
+            params.forEach((key, val) -> claimsMap.put(key, val));
+        }
+
+        return Jwts.builder()
+                .setSubject(userId)
+                .addClaims(claimsMap)
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
+                .compact();
+    }
+
     public String generateToken(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+        return generateToken((User) authentication.getPrincipal(), null);
+
+        /*User user = (User) authentication.getPrincipal();
         Date now = new Date(System.currentTimeMillis());
         Date expiryDate = new Date(now.getTime() + SecurityConstants.EXPIRATION_TIME);
 
@@ -33,7 +60,7 @@ public class JWTTokenProvider {
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
-                .compact();
+                .compact();*/
     }
 
     public boolean validateToken(String token) {
@@ -55,5 +82,12 @@ public class JWTTokenProvider {
                 .getBody();
         String id = (String) claims.get("id");
         return Long.parseLong(id);
+    }
+
+    public Map<String, Object> getParams(String token) {
+        return Jwts.parser()
+                .setSigningKey(SecurityConstants.SECRET)
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
