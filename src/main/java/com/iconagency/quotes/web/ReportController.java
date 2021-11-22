@@ -16,6 +16,8 @@ import org.springframework.http.*;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,9 +44,10 @@ public class ReportController {
 
         try {
 
+            InputStream ioJasper = getClass().getResourceAsStream("/reports/QuoteWithoutSDPrice_test.jrxml");
 
-            String filePath = ResourceUtils.getFile("classpath:reports/QuoteWithoutSDPrice_test.jrxml")
-                .getAbsolutePath();
+            /*String filePath = ResourceUtils.getFile("classpath:reports/QuoteWithoutSDPrice_test.jrxml")
+                .getAbsolutePath();*/
 
             Quotes quotes = quotesRepository.findQuotesByQuote(quoteId)
                     .orElseThrow(() -> new QuoteNotFound("Quote not found"));
@@ -92,7 +95,8 @@ public class ReportController {
                     new JRBeanCollectionDataSource(list);
 
 
-            JasperReport report = JasperCompileManager.compileReport(filePath);
+            //JasperReport report = JasperCompileManager.compileReport(filePath);
+            JasperReport report = JasperCompileManager.compileReport(ioJasper);
             report.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
 
             JasperPrint print =
